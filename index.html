@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+	<title>Hiilivelkakello</title>
+	<meta name="description" content="Hiilivelkakello laskee, kuinka paljon Suomella on hiilivelkaa maksettavanaan.">
+	<meta name="keywords" content="hiilivelka ilmastonmuutos päästöt ilmastopaneeli IPCC nielut Suomi">
+	<meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+	<style>
+body {
+	background-color: black;
+}
+
+p {
+	color: grey;
+	font-family: 'Open Sans', sans-serif;
+}
+
+a {
+	color: grey;
+	font-family: 'Open Sans', sans-serif;
+	text-decoration: none;
+}
+
+#debtNow {
+	font-size: 2rem;
+	text-align:center;
+	color:white;
+}
+
+.isoLuku {
+	font-size: 5rem;
+}
+
+.infoBox {
+	border-size: 1px;
+	border-color: grey;
+	border-style: dashed;
+	padding: 5%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+ul {
+	color:grey;
+	list-style-type: circle;
+}
+
+ul a {
+	color:grey;
+	font-size:0.8rem;
+}
+	</style>
+</head>
+<body>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<!-- Display the countdown timer in an element -->
+<p id="debtNow"></p>
+
+<br />
+<br />
+<br />
+<br />
+
+<div class=infoBox>
+	<p id="debtBy2050"></p>
+
+	<p class="infoTxt">IPCC:n elokuussa 2021 julkaisema kuudes arviointiraportti esittää vuosien 2020–2050 globaaliksi hiilibudjetiksi 300 gigatonnia, jolla puolentoista asteen rajoissa pysytään 83 prosentin todennäköisyydellä. Suomen kansallisen ilmastopaneelin vuonna 2018 julkaiseman raportti esitteli menetelmän, jolla globaali hiilibudjetti voidaan bkt-painotusta käyttäen jakaa oikeudenmukaisesti maailman maiden kesken.</p>
+	<p class="infoTxt">Tässä esitetty hiilivelkakello soveltaa kansallisen ilmastopaneelin menetelmää IPCC:n tuoreimpiin lukuihin. Tuloksena saatu Suomen kansallinen hiilibudjetti ylitettiin jo vuoden 2021 syyskuussa, ja sen jälkeen on eletty velaksi. Tämä velka tarkoittaa käytännössä oikeudenmukaiseksi arvoidun hiilibudjetin ylitystä, joka pitää sitoa nettonieluilla pois vuoteen 2050 mennessä. Vuonna 2021 Suomella ei ollut nettonielua.</p>
+	<p class="infoTxt">Suomen nettopäästöistä on käytetty toukokuussa 2022 julkaistuja arvioita, jotka tulevat päivittymään varsinkin vuoden 2020 nielujen osalta. Lukujen päivittäminen tulee todennäköisesti kasvattamaan velkaa tässä esitetystä. Vuodelle 2050 arvioitu hiilivelka olettaa, että vuosittaiset päästöt ja nielut säilyisivät vuoden 2021 tasolla, vaikka näin ei tule tapahtumaan. Luku ei siten ole ennuste vaan havainnollistus siitä, kuinka kestävä nykyinen päästöjen ja nielujen tasapaino on. Laskin ei myöskään huomioi päästöjen ja nielujen muuttumista vuodenaikojen mukaan vaan olettaa tasaisen tahdin.</p>
+
+
+	<p class="sources">
+	Lähteet:
+	<ul>
+		<li><a href="https://www.ilmastopaneeli.fi/wp-content/uploads/2018/10/Ilmastopaneelin-muistio_hyvaksytty_4.6.2018.pdf">Ilmastopaneeli (2018): Ilmastopaneelin näkemykset pitkän aikavälin päästövähennystavoitteen asettamisessa huomioon otettavista seikoista</a></li>
+		<li><a href="https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf">IPCC (2021): Climate Change 2021: The Physical Science Basis, Summary for Policymakers</a></li>
+		<li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD">Maailmanpankki: GDP per capita, PPP (current international $)</a></li>
+		<li><a href="https://pxweb2.stat.fi/PXWeb/pxweb/fi/StatFin/StatFin__khki/statfin_khki_pxt_138v.px">Tilastokeskus: Kasvihuonekaasupäästöt Suomessa, 1990-2021</a></li>
+		<li><a href="https://pxnet2.stat.fi/PXWeb/pxweb/fi/StatFin/StatFin__vrm__vaenn/statfin_vaenn_pxt_128t.px/">Tilastokeskus: Väestö iän ja sukupuolen mukaan eri vuosien väestöennusteissa</a></li>
+		<li><a href="https://www.w3schools.com/howto/howto_js_countdown.asp">W3Schools: How TO - JavaScript Countdown Timer</a></li>
+		<li><a href="https://population.un.org/wpp/Download/Standard/Population/">YK (2019): World Population Prospects</a></li>
+	</ul>
+	</p>
+</div>
+
+<script>
+// Set the variables
+var countDownDate = new Date("Jan 1, 2050 00:00:00").getTime();
+var startDate = new Date("Jan 1, 2020 00:00:00").getTime();
+var gdpFin = 50517; //WB,2020
+var gdpGlobal = 17131; //WB,2020
+var popFin = 5576813; //StatFin average 2021–2050
+var popGlobal = 8843913000; //UN average 2020–2050
+var budgetGlobal = 300000000000; //IPCC AR6-WGI-SPM
+var usedBudgetFin = 80153000; //StatFin 2020&2021
+var currentYearlyRateFin = 49830000; //StatFin 2021
+
+// Calculate
+var finShare = gdpGlobal/gdpFin;
+console.log("Bkt-perusteinen kerroin Suomelle: " + finShare);
+var pcBudgetGlobal = budgetGlobal/popGlobal;
+console.log("Globaali per capita -budjetti: " + Math.trunc(pcBudgetGlobal));
+var pcBudgetFin = finShare * pcBudgetGlobal;
+console.log("Suomalaiselle korjattu per capita -budjetti: " + Math.trunc(pcBudgetFin));
+var budgetFin = pcBudgetFin * popFin;
+console.log("Suomen kokonaisbudjetti: " + Math.trunc(budgetFin));
+var remainingBudgetFin = budgetFin - usedBudgetFin;
+console.log("Suomen budjettia jäljellä vuoden alussa: " + Math.trunc(remainingBudgetFin));
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+	// Get today's date and time
+	var now = new Date().getTime();
+
+	// Find the distance between now and the count down date
+	var distance = countDownDate - now;
+  
+	// Find the distance between now and the start of the year 3
+	var elapsedTime = now - startDate - (1000 * 60 * 60 * 24 * 365 * 2);
+  
+	// Calculate emissions from the start of the year
+	var currentYearEmissions = currentYearlyRateFin * (elapsedTime / (1000 * 60 * 60 * 24 * 365));
+  
+	// Calculate the current carbon debt
+	var currentDebtFin = Math.abs(remainingBudgetFin - currentYearEmissions);
+  
+	// Calculate the debt in 2050 at current rate.
+	var debtIn2050 = Math.abs(remainingBudgetFin - 28 * currentYearlyRateFin);
+
+	// Time calculations for days, hours, minutes and seconds
+	var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365))
+	var days = Math.floor(distance / (1000 * 60 * 60 * 24) - years * 365);
+
+	// Display the result in the element with id="debtNow"
+	document.getElementById("debtNow").innerHTML = "Suomen hiilivelka on juuri nyt<br /><span class='isoLuku'>" + Math.trunc(currentDebtFin).toLocaleString('fi-FI') + "</span><br />tonnia";
+
+	// Display the result in the element with id="bedtBy2050"
+	document.getElementById("debtBy2050").innerHTML = "EU:n päästökaupan nykyisellä hintatasolla (noin 80 euroa/tonni) laskettuna Suomen nykyinen hiilivelka olisi euroissa mitattuna " + Math.trunc(currentDebtFin * 80).toLocaleString('fi-FI') + " euroa. Jos nykyinen tahti jatkuu, Suomen hiilivelka vuonna 2050 on " + Math.trunc(debtIn2050).toLocaleString('fi-FI') + " tonnia (eli nykyhinnoilla " + Math.trunc(debtIn2050 * 80).toLocaleString('fi-FI') + " euroa).";
+
+	// If the count down is finished, write some text
+	if (distance < 0) {
+    	clearInterval(x);
+		document.getElementById("time").innerHTML = "EXPIRED";
+	}
+}, 1000);
+</script>
+
+</body>
+</html>
