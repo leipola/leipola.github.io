@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+  	<title>141 vuotta lämpenemistä</title>
+  	<meta name="description" content="Infografiikka ilmaston lämpemenemisestä vuosina 1880–2021.">
+	<meta name="keywords" content="ilmastonmuutos,lämpötilat,noaa,d3,grafiikka,infografiikka,datajournalismi,kuukausittaisen,1914,2021,vihreä,lanka">
+	<meta name="author" content="Lasse Leipola">
+    <style>
+      rect.bordered {
+        stroke: white;
+        stroke-width:2px;   
+      }
+
+      text.mono {
+        font-size: 9pt;
+        font-family: Arial;
+        fill: #000000;
+      }
+
+      text.axis-workweek {
+        fill: #000;
+      }
+
+      text.axis-worktime {
+        fill: #000;
+      }
+      
+      #logo {
+      	margin-left:50px;
+      }
+    	
+      #wrapper {
+    	width:1300px;
+    	margin-left:auto;
+    	margin-right:auto;
+    	background-color:white;
+    	padding:30px;
+    	margin-top:20px;
+    	box-shadow: 20px 20px 20px #000000;
+      }
+      
+      body {
+      	background-color:#3a3a3a;
+      }
+      
+      p {
+      	font-family:Arial;
+      	font-size:10px;
+      	margin-left:50px;
+      }
+      
+      .fb-like {
+      	margin-left:50px;
+      }
+      
+      #alku {
+      	font-size: 9pt;
+        font-family: Arial;
+        fill: #000000;
+        margin-left: 86px;
+        float:left;
+      }
+      
+      #kymmen {
+      	font-size: 9pt;
+        font-family: Arial;
+        fill: #000000;
+        margin-left: 48px;
+        float:left;
+      }
+    </style>
+    <script src="https://www.vihrealanka.fi/galleriat/d3/d3.min.js"></script>
+  </head>
+  <body>
+
+  <div id="wrapper">
+	<br />
+  <br />
+	<br />
+	<!--span id="alku">1920</span><span id="kymmen">1930</span><span id="kymmen">1940</span><span id="kymmen">1950</span><span id="kymmen">1960</span><span id="kymmen">1970</span><span id="kymmen">1980</span><span id="kymmen">1990</span><span id="kymmen">2000</span><span id="kymmen">2010</span-->
+    <div id="chart"></div>
+
+    <script type="text/javascript">
+      var margin = { top: 0, right: 0, bottom: 0, left: 50 },
+          width = 1250 - margin.left - margin.right,
+          height = 600 - margin.top - margin.bottom,
+          gridSize = Math.floor(34),
+          legendElementWidth = gridSize*2,
+          buckets = 9,
+          colors = ["navy", "#2c7fb8", "#41b6c4", "#a1dab4", "#ffffcc", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"], // alternatively colorbrewer.YlGnBu[9]
+          months = ["Tammi", "Helmi", "Maalis", "Huhti", "Touko", "Kesä", "Heinä", "Elo", "Syys", "Loka", "Marras", "Joulu"],
+          years = ["1914", "1934", "1954", "1974", "1994", "2014"];
+
+
+      d3.tsv("uusidata.tsv",
+        function(d) {
+          return {
+            month: +d.month,
+            year: +d.year,
+            value: +d.value
+          };
+        },
+        function(error, data) {
+          var colorScale = d3.scale.quantile()
+              .domain([d3.min(data, function (d) { return d.value; }), 0, d3.max(data, function (d) { return d.value; })])
+              .range(colors);
+
+          var svg = d3.select("#chart").append("svg")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+              .append("g")
+              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+          /*var dayLabels = svg.selectAll(".dayLabel")
+              .data(months)
+              .enter().append("text")
+                .text(function (d) { return d; })
+                .attr("x", 0)
+                .attr("y", function (d, i) { return i * gridSize * 1; })
+                .style("text-anchor", "end")
+                .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+                .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+          /*var timeLabels = svg.selectAll(".timeLabel")
+              .data(years)
+              .enter().append("text")
+                .text(function(d) { return d; })
+                .attr("x", function(d, i) { return i * gridSize*4.95; })
+                .attr("y", 0)
+                .style("text-anchor", "middle")
+                .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+                .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });*/
+
+          var heatMap = svg.selectAll(".year")
+              .data(data)
+              .enter().append("rect")
+              .attr("x", function(d) { return (d.year - 1) * gridSize/4; })
+              .attr("y", function(d) { return (d.month - 1) * gridSize*1.4; })
+              .attr("rx", 4)
+              .attr("ry", 4)
+              .attr("class", "year bordered")
+              .attr("width", gridSize/5)
+              .attr("height", gridSize*1.4)
+              .style("fill", colors[0]);
+
+          heatMap.transition().duration(1000)
+              .style("fill", function(d) { return colorScale(d.value); });
+
+          heatMap.append("title").text(function(d) { return d.value; });
+              
+          /*var legend = svg.selectAll(".legend")
+              .data([0].concat(colorScale.quantiles()), function(d) { return d; })
+              .enter().append("g")
+              .attr("class", "legend");
+          legend.append("rect")
+            .attr("x", function(d, i) { return legendElementWidth * i; })
+            .attr("y", height-100)
+            .attr("width", legendElementWidth)
+            .attr("height", gridSize/2)
+            .style("fill", function(d, i) { return colors[i]; });
+          legend.append("text")
+            .attr("class", "mono")
+            .text(function(d) { return d.toFixed(1); })
+            .attr("x", function(d, i) { return (legendElementWidth + 1) * i - 19; })
+            .attr("y", height-70);*/
+      });
+    </script>
+    <br />
+    </div>
+  </body>
+</html>
