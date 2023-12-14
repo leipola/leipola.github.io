@@ -75,7 +75,7 @@ ul a {
 	<p id="debtBy2050"></p>
 
 	<p class="infoTxt">IPCC:n elokuussa 2021 julkaisema kuudes arviointiraportti esittää vuosien 2020–2050 globaaliksi hiilibudjetiksi 300 gigatonnia, jolla puolentoista asteen rajoissa pysytään 83 prosentin todennäköisyydellä. Suomen kansallisen ilmastopaneelin vuonna 2018 julkaiseman raportti esitteli menetelmän, jolla globaali hiilibudjetti voidaan bkt-painotusta käyttäen jakaa oikeudenmukaisesti maailman maiden kesken.</p>
-	<p class="infoTxt">Tässä esitetty hiilivelkakello soveltaa kansallisen ilmastopaneelin menetelmää IPCC:n tuoreimpiin lukuihin. Tuloksena saatu Suomen kansallinen hiilibudjetti ylitettiin jo vuoden 2021 syyskuussa, ja sen jälkeen on eletty velaksi. Tämä velka tarkoittaa käytännössä oikeudenmukaiseksi arvoidun hiilibudjetin ylitystä, joka pitää sitoa nettonieluilla pois vuoteen 2050 mennessä. Vuonna 2021 Suomella ei ollut nettonielua.</p>
+	<p class="infoTxt">Tässä esitetty hiilivelkakello soveltaa kansallisen ilmastopaneelin menetelmää IPCC:n tuoreimpiin lukuihin. Tuloksena saatu Suomen kansallinen hiilibudjetti ylitettiin jo vuonna 2021, minkä jälkeen on eletty velaksi. Tämä velka tarkoittaa käytännössä oikeudenmukaiseksi arvoidun hiilibudjetin ylitystä, joka pitää sitoa nettonieluilla pois vuoteen 2050 mennessä. Vuonna 2021 Suomella ei ollut nettonielua.</p>
 	<p class="infoTxt">Suomen nettopäästöistä on käytetty joulukuussa 2023 julkaistuja arvioita. Vuodelle 2050 arvioitu hiilivelka olettaa, että vuosittaiset päästöt ja nielut säilyisivät vuoden 2022 tasolla, vaikka näin ei tule tapahtumaan. Luku ei siten ole ennuste vaan havainnollistus siitä, kuinka kestävä nykyinen päästöjen ja nielujen tasapaino on. Laskin ei myöskään huomioi päästöjen ja nielujen muuttumista vuodenaikojen mukaan vaan olettaa tasaisen tahdin.</p>
 
 
@@ -85,14 +85,14 @@ ul a {
 		<li><a href="https://www.ilmastopaneeli.fi/wp-content/uploads/2018/10/Ilmastopaneelin-muistio_hyvaksytty_4.6.2018.pdf">Ilmastopaneeli (2018): Ilmastopaneelin näkemykset pitkän aikavälin päästövähennystavoitteen asettamisessa huomioon otettavista seikoista</a></li>
 		<li><a href="https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf">IPCC (2021): Climate Change 2021: The Physical Science Basis, Summary for Policymakers</a></li>
 		<li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD">Maailmanpankki: GDP per capita, PPP (current international $)</a></li>
-		<li><a href="https://pxweb2.stat.fi/PXWeb/pxweb/fi/StatFin/StatFin__khki/statfin_khki_pxt_138v.px">Tilastokeskus: Kasvihuonekaasupäästöt Suomessa, 1990-2021</a></li>
+		<li><a href="https://stat.fi/tilasto/khki">Tilastokeskus: Kasvihuonekaasut</a></li>
 		<li><a href="https://pxnet2.stat.fi/PXWeb/pxweb/fi/StatFin/StatFin__vrm__vaenn/statfin_vaenn_pxt_128t.px/">Tilastokeskus: Väestö iän ja sukupuolen mukaan eri vuosien väestöennusteissa</a></li>
 		<li><a href="https://www.w3schools.com/howto/howto_js_countdown.asp">W3Schools: How TO - JavaScript Countdown Timer</a></li>
 		<li><a href="https://population.un.org/wpp/Download/Standard/Population/">YK (2019): World Population Prospects</a></li>
 	</ul>
 	</p>
 	
-	<p>© Lasse Leipola 2022, päivitetty 14.12.2023</p>
+	<p>© Lasse Leipola 2023, päivitetty 14.12.2023</p>
 	
 </div>
 
@@ -105,8 +105,8 @@ var gdpGlobal = 17131; //WB,2020
 var popFin = 5576813; //StatFin average 2021–2050
 var popGlobal = 8843913000; //UN average 2020–2050
 var budgetGlobal = 300000000000; //IPCC AR6-WGI-SPM
-var usedBudgetFin = 143929000; //StatFin 2020&2021
-var currentYearlyRateFin = 50505000; //StatFin 2021
+var usedBudgetFin = 143929000; //StatFin 2020–2022
+var currentYearlyRateFin = 50505000; //StatFin 2022
 
 // Calculate
 var finShare = gdpGlobal/gdpFin;
