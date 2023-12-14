@@ -26,13 +26,13 @@ a {
 }
 
 #debtNow {
-	font-size: 3rem;
+	font-size: 2rem;
 	text-align:center;
 	color:white;
 }
 
 .isoLuku {
-	font-size: 8rem;
+	font-size: 6rem;
 }
 
 .infoBox {
@@ -112,13 +112,13 @@ var currentYearlyRateFin = 50505000; //StatFin 2022
 var finShare = gdpGlobal/gdpFin;
 console.log("Bkt-perusteinen kerroin Suomelle: " + finShare);
 var pcBudgetGlobal = budgetGlobal/popGlobal;
-console.log("Globaali per capita -budjetti: " + Math.trunc(pcBudgetGlobal));
+console.log("Globaali per capita -perustainen hiilibudjetti: " + Math.trunc(pcBudgetGlobal));
 var pcBudgetFin = finShare * pcBudgetGlobal;
-console.log("Suomalaiselle korjattu per capita -budjetti: " + Math.trunc(pcBudgetFin));
+console.log("Suomalaiselle korjattu per capita -hiilibudjetti: " + Math.trunc(pcBudgetFin));
 var budgetFin = pcBudgetFin * popFin;
 console.log("Suomen kokonaisbudjetti: " + Math.trunc(budgetFin));
 var remainingBudgetFin = budgetFin - usedBudgetFin;
-console.log("Suomen budjettia jäljellä vuoden alussa: " + Math.trunc(remainingBudgetFin));
+console.log("Suomen budjettia jäljellä vuoden 2023 alussa: " + Math.trunc(remainingBudgetFin));
 
 // Update the count down every 1 second
 var x = setInterval(function() {
