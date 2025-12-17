@@ -80,13 +80,13 @@ ul a {
 	
 	<p class="infoTxt">IPCC:n elokuussa 2021 julkaisema raportti esitti vuosien 2020–2050 globaaliksi, puolentoista asteen tavoitteen mukaiseksi hiilibudjetiksi 300 gigatonnia. Jos päästöt ylittävät globaalisti nielut tämän verran, puolentoista asteen rajoissa pysytään 83 prosentin todennäköisyydellä. Suomen kansallisen ilmastopaneelin vuonna 2018 julkaisema raportti puolestaan esitteli menetelmän, jolla globaali hiilibudjetti voidaan bkt-painotusta käyttäen jakaa oikeudenmukaisesti maailman maiden kesken.</p>
 
-	<p class="infoTxt">Tällä sivulla esitetty hiilivelkakello soveltaa kansallisen ilmastopaneelin menetelmää IPCC:n 2021 julkaisemiin lukuihin. Laskelman tuloksena saatu Suomen kansallinen hiilibudjetti ehdittiin käyttää loppuun jo vuosien 2020–2021 aikana, minkä jälkeen on siis eletty velaksi. Tämä velka tarkoittaa käytännössä oikeudenmukaiseksi arvoidun hiilibudjetin ylitystä, joka Suomen pitää sitoa nettonieluilla pois vuoteen 2050 mennessä, jotta kannamme oikeudenmukaisen osuutemme puolentoista asteen tavoitteesta. Nettonielu tarkoittaa, että nielut ovat suuremmat kuin päästöt, eli niin sanottua hiilinegatiivisuutta, joka pitäisi ilmastolain mukaan saavuttaa vuoden 2035 jälkeen. Kunnes se saavutetaan, hiilivelka kasvaa.</p>
+	<p class="infoTxt">Tällä sivulla esitetty hiilivelkakello soveltaa kansallisen ilmastopaneelin menetelmää IPCC:n 2021 julkaisemiin lukuihin. Laskelman tuloksena saatu Suomen kansallinen hiilibudjetti ehdittiin käyttää loppuun jo vuosien 2020–2021 aikana, minkä jälkeen on siis eletty velaksi. Tämä velka tarkoittaa käytännössä oikeudenmukaiseksi arvoidun hiilibudjetin ylitystä, joka Suomen pitää sitoa nettonieluilla pois vuoteen 2050 mennessä, jotta kannamme oikeudenmukaisen osuutemme puolentoista asteen tavoitteesta. Nettonielu tarkoittaa, että nielut ovat suuremmat kuin päästöt eli niin sanottua hiilinegatiivisuutta, joka pitäisi ilmastolain mukaan saavuttaa vuoden 2035 hiilineutraaliuden jälkeen. Kunnes se hiilinegatiivisuus saavutetaan, hiilivelka kasvaa.</p>
 
     <p class="infoTxt">Käytännössä hiilivelan kasvun pysäyttäminen ja takaisinmaksu tehdään päättäväisellä ilmastopolitiikalla, joka kääntää päästöt nopeaan laskuun ja palauttaa maankäyttösektorin merkittäväksi nieluksi.</p>
 
 	<p id="debtBy2050"></p>
 
-	<p class="infoTxt">Suomen nettopäästöistä on käytetty joulukuussa 2023 julkaistuja arvioita. Vuodelle 2050 arvioitu hiilivelka olettaa, että vuosittaiset päästöt ja nielut säilyisivät vuoden 2022 tasolla, vaikka näin ei tule tapahtumaan. Luku ei siten ole ennuste vaan havainnollistus siitä, kuinka kestämätön nykyinen päästöjen ja nielujen tasapaino on. Laskelma ei myöskään huomioi päästöjen ja nielujen muuttumista vuodenaikojen mukaan vaan olettaa tasaisen tahdin läpi vuoden. Sivuston JavaScript-koodi on vapaasti tarkasteltavissa lähdekoodista, ja laskelman välivaiheet näkyvät myös selaimen konsolissa.</p>
+	<p class="infoTxt">Suomen nettopäästöistä on käytetty joulukuussa 2025 julkaistuja arvioita. Vuodelle 2050 arvioitu hiilivelka olettaa, että vuosittaiset päästöt ja nielut säilyisivät vuoden 2024 tasolla, vaikka näin ei tule tapahtumaan. Luku ei siten ole ennuste vaan havainnollistus siitä, kuinka kestämätön nykyinen päästöjen ja nielujen tasapaino on. Laskelma ei myöskään huomioi päästöjen ja nielujen muuttumista vuodenaikojen mukaan vaan olettaa tasaisen tahdin läpi vuoden. Sivuston JavaScript-koodi on vapaasti tarkasteltavissa lähdekoodista, ja laskelman välivaiheet näkyvät myös selaimen konsolissa.</p>
 
 	<p class="sources">
 	Lähteet:
@@ -101,7 +101,7 @@ ul a {
 	</ul>
 	</p>
 	
-	<p>© Lasse Leipola 2023, päivitetty 19.12.2023</p>
+	<p>© Lasse Leipola 2023–2025, päivitetty 17.12.2025</p>
 	
 </div>
 
@@ -109,13 +109,13 @@ ul a {
 // Set the variables
 var countDownDate = new Date("Jan 1, 2050 00:00:00").getTime();
 var startDate = new Date("Jan 1, 2020 00:00:00").getTime();
-var gdpFin = 59027; //WB,2022
-var gdpGlobal = 20646; //WB,2022
+var gdpFin = 64289; //WB,2024
+var gdpGlobal = 24404; //WB,2024
 var popFin = 5576813; //StatFin average 2021–2050
 var popGlobal = 8842983000; //UN average 2021–2050
 var budgetGlobal = 300000000000; //IPCC AR6-WGI-SPM
-var usedBudgetFin = 143929000; //StatFin 2020–2022
-var currentYearlyRateFin = 50505000; //StatFin 2022
+var usedBudgetFin = 251343000; //StatFin 2020–2024
+var currentYearlyRateFin = 48967000; //StatFin 2024
 
 // Calculate
 var finShare = gdpGlobal/gdpFin;
@@ -158,7 +158,7 @@ var x = setInterval(function() {
 	document.getElementById("debtNow").innerHTML = "Suomen hiilivelka on juuri nyt<br /><span class='isoLuku'>" + Math.trunc(currentDebtFin).toLocaleString('fi-FI') + "</span><br />tonnia";
 
 	// Display the result in the element with id="bedtBy2050"
-	document.getElementById("debtBy2050").innerHTML = "Vaikka hiilivelkaa ei voi kuitata rahalla, sen kokoluokkaa voi havainnollistaa esimerkiksi EU:n päästökaupan nykyisellä hintatasolla (noin 80 euroa/tonni). Näin laskettuna Suomen nykyinen hiilivelka olisi euroissa mitattuna " + Math.trunc(currentDebtFin * 80).toLocaleString('fi-FI') + " euroa. Jos nykyinen tahti jatkuu, Suomen hiilivelka vuonna 2050 on " + Math.trunc(debtIn2050).toLocaleString('fi-FI') + " tonnia (eli nykyhinnoilla " + Math.trunc(debtIn2050 * 80).toLocaleString('fi-FI') + " euroa).";
+	document.getElementById("debtBy2050").innerHTML = "Vaikka hiilivelkaa ei voi kuitata rahalla, sen kokoluokkaa voi havainnollistaa esimerkiksi EU:n päästökaupan nykyisellä hintatasolla (noin 75 euroa/tonni). Näin laskettuna Suomen nykyinen hiilivelka olisi euroissa mitattuna " + Math.trunc(currentDebtFin * 75).toLocaleString('fi-FI') + " euroa. Jos nykyinen tahti jatkuu, Suomen hiilivelka vuonna 2050 on " + Math.trunc(debtIn2050).toLocaleString('fi-FI') + " tonnia (eli nykyhinnoilla " + Math.trunc(debtIn2050 * 75).toLocaleString('fi-FI') + " euroa).";
 
 	// If the count down is finished, write some text
 	if (distance < 0) {
